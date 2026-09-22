@@ -1,0 +1,30 @@
+# Environments & Secrets
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Data & Vectorstore (Prevent huge uploads)
+data/vectorstore/
+*.sqlite3
+
+# IDEs & Editor configurations
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Streamlit config (optional)
+.streamlit/
+
+# OS generated files
+.DS_Store
+Thumbs.db

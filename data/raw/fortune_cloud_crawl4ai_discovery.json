@@ -1,0 +1,371 @@
+[
+  {
+    "url": "https://lms.fortunecloudindia.com/",
+    "title": "LMS | Student Login",
+    "source": "crawl4ai",
+    "success": true,
+    "status_code": 200,
+    "internal_link_count": 0,
+    "content_hash": "e681868b22239e4d471fd575e9525b14f000bd968b83029c703bc5f73f9efcbd"
+  },
+  {
+    "url": "https://lms.fortunecloudindia.com/aptitude_tests/",
+    "title": "LMS | Student Login",
+    "source": "crawl4ai",
+    "success": true,
+    "status_code": 200,
+    "internal_link_count": 0,
+    "content_hash": "82c683274814bbae3903966347cd79da5a069df81aceaf172f13fa1b1a0aef2a"
+  },
+  {
+    "url": "https://lms.fortunecloudindia.com/respass/",
+    "title": "LMS | Student Login",
+    "source": "crawl4ai",
+    "success": true,
+    "status_code": 200,
+    "internal_link_count": 0,
+    "content_hash": "c1ffe0e23dd60a9fd1295581ea6216e632cf7b964dc4f18d4886d15a5d0a5342"
+  },
+  {
+    "url": "https://www.fortunecloudindia.com/",
+    "title": "Fortune Cloud Technologies | Build Skills, Get Certified, Get Hired..!",
+    "source": "crawl4ai",
+    "success": true,
+    "status_code": 200,
+    "internal_link_count": 35,
+    "content_hash": "c5dbb3acb6662561036a19d938965aab618c61876c6b4ff94feef29fc3fa7170"
+  },
+  {
+    "url": "https://www.fortunecloudindia.com/About-Us",
+    "title": "About Us | Fortune Cloud Technologies | IT Training Institute",
+    "source": "crawl4ai",
+    "success": true,
+    "status_code": 200,
+    "internal_link_count": 37,
+    "content_hash": "901ba2fd3eeaee6242d9dc3f0bd291670d56352949a4882bc80f0d1f860e4b2d"
+  },
+  {
+    "url": "https://www.fortunecloudindia.com/Blog",
+    "title": "Latest Tech Articles & IT Insights | Fortune Cloud Technologies",
+    "source": "crawl4ai",
+    "success": true,
+    "status_code": 200,
+    "internal_link_count": 22,
+    "content_hash": "9719a6d5a36589acca8e7d167e45ddfad989b67612149142381e6d032e6019ed"
+  },
+  {
+    "url": "https://www.fortunecloudindia.com/Contact",
+    "title": "Contact | Fortune Cloud Technologies",
+    "source": "crawl4ai",
+    "success": true,
+    "status_code": 200,
+    "internal_link_count": 22,
+    "content_hash": "32ee831d5e262613196818c3060a4eb41ddc24821603d6957007ccf4eeb0d063"
+  },
+  {
+    "url": "https://www.fortunecloudindia.com/PrivacyPolicies",
+    "title": "Privacy Policy | Fortune Cloud Technologies",
+    "source": "crawl4ai",
+    "success": true,
+    "status_code": 200,
+    "internal_link_count": 22,
+    "content_hash": "f344c99071cf6327a004c51e9975061d999280c6a466660e54bfc1e563db0168"
+  },
+  {
+    "url": "https://www.fortunecloudindia.com/ProfanityPolicy",
+    "title": "Profanity Policy | Fortune Cloud Technologies",
+    "source": "crawl4ai",
+    "success": true,
+    "status_code": 200,
+    "internal_link_count": 22,
+    "content_hash": "d2ffe21a492c176806d25b1faec7f63b36d58d55171c67a44c120dd409d39ce8"
+  },
+  {
+    "url": "https://www.fortunecloudindia.com/RefundPolicy",
+    "title": "Refund Policy | Fortune Cloud Technologies",
+    "source": "crawl4ai",
+    "success": true,
+    "status_code": 200,
+    "internal_link_count": 22,
+    "content_hash": "8a34f31aaba060b0661f3a7d22a6fdad5d280e08782bf33e19ac379f0db40010"
+  },
+  {
+    "url": "https://www.fortunecloudindia.com/Success-Stories",
+    "title": "Success Stories | Fortune Cloud Technologies",
+    "source": "crawl4ai",
+    "success": true,
+    "status_code": 200,
+    "internal_link_count": 22,
+    "content_hash": "ec58ffdf38802835257f1ee6e0113e12b734e37260e64eafe9319b3f38183aab"
+  },
+  {
+    "url": "https://www.fortunecloudindia.com/TermsAndConditions",
+    "title": "Terms & Conditions | Fortune Cloud Technologies",
+    "source": "crawl4ai",
+    "success": true,
+    "status_code": 200,
+    "internal_link_count": 22,
+    "content_hash": "98b043e5e9c7857507e74c5552b147d1f8336dd94b0def496a5e9521cd0f4d05"
+  },
+  {
+    "url": "https://www.fortunecloudindia.com/ai-powered-advanced-mern-stack",
+    "title": "AI Powered Advanced MERN Stack | Fortune Cloud Technologies",
+    "source": "crawl4ai",
+    "success": true,
+    "status_code": 200,
+    "internal_link_count": 22,
+    "content_hash": "86e51e0640924d276447bbe7e516a63c88076cd0c4a93e673685c082f5e8bba7"
+  },
+  {
+    "url": "https://www.fortunecloudindia.com/ai-powered-cyber-security",
+    "title": "AI Powered Cyber Security | Fortune Cloud Technologies",
+    "source": "crawl4ai",
+    "success": true,
+    "status_code": 200,
+    "internal_link_count": 23,
+    "content_hash": "b88f929215fd194e7915ed67b828d95a8146ade2a8072953706ed27f1c6efa19"
+  },
+  {
+    "url": "https://www.fortunecloudindia.com/batchschedule",
+    "title": "Batch Schedule | Fortune Cloud Technologies",
+    "source": "crawl4ai",
+    "success": true,
+    "status_code": 200,
+    "internal_link_count": 22,
+    "content_hash": "9a52777446524aad78cd0f89255fdb38611dc14daa7173a2591f82564ee2fa80"
+  },
+  {
+    "url": "https://www.fortunecloudindia.com/careers",
+    "title": "Careers | Fortune Cloud Technologies",
+    "source": "crawl4ai",
+    "success": true,
+    "status_code": 200,
+    "internal_link_count": 22,
+    "content_hash": "9c67dc7f076977ac5c26c8bb87c0314eb78a70607c85e4e1391512ae9ebee541"
+  },
+  {
+    "url": "https://www.fortunecloudindia.com/certified-hr-recruiter-and-generalist-course",
+    "title": "Certified HR Recruiter & Generalist Course | Fortune Cloud Technologies",
+    "source": "crawl4ai",
+    "success": true,
+    "status_code": 200,
+    "internal_link_count": 22,
+    "content_hash": "a2f94ce52e23605befa89f098225e00dc322bd3f1fb13e07791c3dc039895f8e"
+  },
+  {
+    "url": "https://www.fortunecloudindia.com/cloud-computing-course-pune",
+    "title": "Cloud Computing Course in Pune | Fortune Cloud Technologies",
+    "source": "crawl4ai",
+    "success": true,
+    "status_code": 200,
+    "internal_link_count": 23,
+    "content_hash": "81368ffa20c6b92c635ba17415b83affa432b7c821227ade91fdf81725cefbc9"
+  },
+  {
+    "url": "https://www.fortunecloudindia.com/courses",
+    "title": "IT Courses & Certification Programs | Fortune Cloud Technologies",
+    "source": "crawl4ai",
+    "success": true,
+    "status_code": 200,
+    "internal_link_count": 36,
+    "content_hash": "379a9bac06f35d0e82a2be48e00b514ea828c5108d9c0dc8b6be3c569c5c2d99"
+  },
+  {
+    "url": "https://www.fortunecloudindia.com/cyber-security-course-pune",
+    "title": "Cyber Security Course in Pune | Fortune Cloud Technologies",
+    "source": "crawl4ai",
+    "success": true,
+    "status_code": 200,
+    "internal_link_count": 23,
+    "content_hash": "106bba1b38855633a2cfe7fecfc5f1f8c36bead2c4e92ed2156e09c0b99281a8"
+  },
+  {
+    "url": "https://www.fortunecloudindia.com/data-analytics-with-generative-ai",
+    "title": "Data Analyst Course with Generative AI | Fees & Syllabus - Fortune Cloud",
+    "source": "crawl4ai",
+    "success": true,
+    "status_code": 200,
+    "internal_link_count": 22,
+    "content_hash": "7161c4d172d4d1c8afea6ea8c91b1f28f02a3e7913692e8c4302e88a6e0a458d"
+  },
+  {
+    "url": "https://www.fortunecloudindia.com/data-science-analytics-course-pune",
+    "title": "Data Science & Analytics Course in Pune | Fortune Cloud Technologies",
+    "source": "crawl4ai",
+    "success": true,
+    "status_code": 200,
+    "internal_link_count": 24,
+    "content_hash": "6f54e752403987163a707991c11bf0796c507b18cbe4682c080e37c31c80ede2"
+  },
+  {
+    "url": "https://www.fortunecloudindia.com/data-science-and-data-analytics-with-generative-ai",
+    "title": "Data Analyst Course with Generative AI | Fees & Syllabus - Fortune Cloud",
+    "source": "crawl4ai",
+    "success": true,
+    "status_code": 200,
+    "internal_link_count": 22,
+    "content_hash": "6ebb0915698911a4c17218d7fc36938b56469ea0d49b7e434a747df44b76aae3"
+  },
+  {
+    "url": "https://www.fortunecloudindia.com/digital-marketing-course-pune",
+    "title": "Digital Marketing Course in Pune | Fortune Cloud Technologies",
+    "source": "crawl4ai",
+    "success": true,
+    "status_code": 200,
+    "internal_link_count": 23,
+    "content_hash": "9650b2d8236e1af4295908aea3c696d5fa3b980c38299cd1188ac980be96b9e5"
+  },
+  {
+    "url": "https://www.fortunecloudindia.com/edge-dotnet-with-ai",
+    "title": "Edge Dotnet (with AI) | Fortune Cloud Technologies",
+    "source": "crawl4ai",
+    "success": true,
+    "status_code": 200,
+    "internal_link_count": 22,
+    "content_hash": "3eacb732448082525e8cdb77ce462a6d63f9b2b0a7fd47e2bb891d4a8da1173a"
+  },
+  {
+    "url": "https://www.fortunecloudindia.com/edge-java-with-ai",
+    "title": "Edge Java (with AI) | Fortune Cloud Technologies",
+    "source": "crawl4ai",
+    "success": true,
+    "status_code": 200,
+    "internal_link_count": 22,
+    "content_hash": "232adc8ec18ddfda0365bcc92be0f194c46cc993426632ca295d4ec0e7822311"
+  },
+  {
+    "url": "https://www.fortunecloudindia.com/edge-python-with-ai",
+    "title": "Edge Python (with AI) | Fortune Cloud Technologies",
+    "source": "crawl4ai",
+    "success": true,
+    "status_code": 200,
+    "internal_link_count": 22,
+    "content_hash": "bf5edd47cd59bd4c2e89f70755c6de8e0dd764ee679dc8809edf1b576ae1997b"
+  },
+  {
+    "url": "https://www.fortunecloudindia.com/franchise-opportunity",
+    "title": "Franchise Opportunity | Fortune Cloud Technologies",
+    "source": "crawl4ai",
+    "success": true,
+    "status_code": 200,
+    "internal_link_count": 22,
+    "content_hash": "50cd43d82fa2c6753973ca5944f51be3962a50f2feac6b4f0d57bda96b9ac639"
+  },
+  {
+    "url": "https://www.fortunecloudindia.com/full-stack-development-courses-pune",
+    "title": "Full Stack Development Courses in Pune | Fortune Cloud Technologies",
+    "source": "crawl4ai",
+    "success": true,
+    "status_code": 200,
+    "internal_link_count": 23,
+    "content_hash": "b1c126eee2276ff367be6b05b1beb41b73d104fa571bcbe1430f7ebbfce190cb"
+  },
+  {
+    "url": "https://www.fortunecloudindia.com/master-in-cloud-architecture-with-ai",
+    "title": "Master in cloud architecture with ai - cloud architect course -fortune cloud",
+    "source": "crawl4ai",
+    "success": true,
+    "status_code": 200,
+    "internal_link_count": 22,
+    "content_hash": "37578b02dce1efddb2b5db7f55fe128ba81e11db3fe4c136b8a7906a9a402983"
+  },
+  {
+    "url": "https://www.fortunecloudindia.com/master-in-digital-marketing",
+    "title": "Master in Digital Marketing | Fortune Cloud Technologies",
+    "source": "crawl4ai",
+    "success": true,
+    "status_code": 200,
+    "internal_link_count": 22,
+    "content_hash": "9bfca285860bad472847f16e7618177f649d0586bb353f987f9353949087b39f"
+  },
+  {
+    "url": "https://www.fortunecloudindia.com/mern-stack-course-pune",
+    "title": "MERN Stack Course in Pune | Fortune Cloud Technologies",
+    "source": "crawl4ai",
+    "success": true,
+    "status_code": 200,
+    "internal_link_count": 23,
+    "content_hash": "0e71a8d641145615134c89a4ea71511f87de7caf5dc799eff08013e4cd636f9b"
+  },
+  {
+    "url": "https://www.fortunecloudindia.com/ontact",
+    "title": "IT Courses & Certification Programs | Fortune Cloud Technologies",
+    "source": "crawl4ai",
+    "success": true,
+    "status_code": 200,
+    "internal_link_count": 36,
+    "content_hash": "1e7476d16c847006b8f3785ecd8c056a2ea0216ff8801805b8d66ceebf8df463"
+  },
+  {
+    "url": "https://www.fortunecloudindia.com/open-campus-drive",
+    "title": "Fortune Cloud Open Campus Drive | Free IT Placement Drive",
+    "source": "crawl4ai",
+    "success": true,
+    "status_code": 200,
+    "internal_link_count": 22,
+    "content_hash": "527251fc60bfe5baa1c425642f37da41e13fb95b7d3c5d5e2af2993bedc0b8c4"
+  },
+  {
+    "url": "https://www.fortunecloudindia.com/quickinfo",
+    "title": "Quick Info | Fortune Cloud Technologies",
+    "source": "crawl4ai",
+    "success": true,
+    "status_code": 200,
+    "internal_link_count": 22,
+    "content_hash": "338a23fc6c36206c122f21e63c51c2b972a580f387fe95bacee8e5c9f5972541"
+  },
+  {
+    "url": "https://www.fortunecloudindia.com/recruiters",
+    "title": "For Recruiters | Fortune Cloud Technologies",
+    "source": "crawl4ai",
+    "success": true,
+    "status_code": 200,
+    "internal_link_count": 22,
+    "content_hash": "97d5873721bee43cca1d9dbfb72fbf3d76f66d8e1940370a89ca5e0af4816df6"
+  },
+  {
+    "url": "https://www.fortunecloudindia.com/sap-abap",
+    "title": "SAP ABAP | Fortune Cloud Technologies",
+    "source": "crawl4ai",
+    "success": true,
+    "status_code": 200,
+    "internal_link_count": 22,
+    "content_hash": "3494c52ed1f05fde53853e1b5686e647441abafd971badcfbb38b70cbeb68687"
+  },
+  {
+    "url": "https://www.fortunecloudindia.com/sap-fico",
+    "title": "SAP FICO | Fortune Cloud Technologies",
+    "source": "crawl4ai",
+    "success": true,
+    "status_code": 200,
+    "internal_link_count": 22,
+    "content_hash": "ffd4a754d5912c163bfe6e05c1d0ddbf20d5f57ec60102c867a7c9307603f7ac"
+  },
+  {
+    "url": "https://www.fortunecloudindia.com/sap-mm-materials-management",
+    "title": "SAP MM (Materials Management) | Fortune Cloud Technologies",
+    "source": "crawl4ai",
+    "success": true,
+    "status_code": 200,
+    "internal_link_count": 22,
+    "content_hash": "a64d4fe7cef33f18ac7fdacc9a67647448ea6e7b5a3929bcabe3e98692fd846f"
+  },
+  {
+    "url": "https://www.fortunecloudindia.com/software-testing-course-pune",
+    "title": "Software Testing Course in Pune | Fortune Cloud Technologies",
+    "source": "crawl4ai",
+    "success": true,
+    "status_code": 200,
+    "internal_link_count": 23,
+    "content_hash": "6f190ba4bd6ad115e6d2dea8df3140232627d54fc572ed7291759e0838e6eebe"
+  },
+  {
+    "url": "https://www.fortunecloudindia.com/software-testing-with-ai",
+    "title": "Software Testing (with AI) | Fortune Cloud Technologies",
+    "source": "crawl4ai",
+    "success": true,
+    "status_code": 200,
+    "internal_link_count": 22,
+    "content_hash": "39c2c21c9d8c23804bf4279bea56f2dd457150ac08c29eed78e9e92a01df2db8"
+  }
+]
