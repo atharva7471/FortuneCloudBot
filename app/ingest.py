@@ -1,15 +1,20 @@
+import os
 import json
 from pathlib import Path
-import shutil
+from dotenv import load_dotenv
 from langchain_text_splitters import MarkdownHeaderTextSplitter
 from langchain_core.documents import Document
-from langchain_chroma import Chroma
-from langchain_community.embeddings import OllamaEmbeddings
+from langchain_huggingface import HuggingFaceEndpointEmbeddings
+from langchain_pinecone import PineconeVectorStore
+from pinecone import Pinecone
+
+load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 INPUT_MD = BASE_DIR / "data" / "raw" / "fortune_cloud_llms_full.md"
-VECTORSTORE_DIR = BASE_DIR / "data" / "vectorstore"
 OUTPUT_JSON = BASE_DIR / "data" / "raw" / "fortune_cloud_documents.json" 
+
+PINECONE_INDEX_NAME = "fortune-cloud"
 
 def main():
     if not INPUT_MD.exists():
@@ -18,13 +23,12 @@ def main():
         return
 
     print("=" * 60)
-    print("FORTUNE CLOUD — INTELLIGENT INGESTION")
+    print("FORTUNE CLOUD — CLOUD INGESTION (PINECONE & HF)")
     print("=" * 60)
 
     with open(INPUT_MD, "r", encoding="utf-8") as f:
         markdown_text = f.read()
 
-    # Intelligently split the markdown based on its native Header structure
     headers_to_split_on = [
         ("#", "Header 1"),
         ("##", "Header 2"),
@@ -37,23 +41,21 @@ def main():
     docs_for_json = []
     final_docs = []
     
+    current_url = "https://www.fortunecloudindia.com"
+    
     for split in md_header_splits:
         content = split.page_content
         metadata = split.metadata
         
-        # Extract the URL if it's explicitly written in the chunk
-        url = "https://www.fortunecloudindia.com"
         for line in content.splitlines():
             if "**URL**:" in line:
-                url = line.split("**URL**:")[1].strip()
+                current_url = line.split("**URL**:")[1].strip()
                 break
             elif "**Canonical URL**:" in line:
-                url = line.split("**Canonical URL**:")[1].strip()
+                current_url = line.split("**Canonical URL**:")[1].strip()
                 break
                 
-        metadata["url"] = url
-        
-        # Create a breadcrumb trail (e.g. "Courses > Technical > Data Science")
+        metadata["url"] = current_url
         h_path = " > ".join(v for k, v in metadata.items() if k.startswith("Header"))
         metadata["section"] = h_path
         
@@ -61,29 +63,28 @@ def main():
             "content": content,
             "metadata": metadata
         })
-        
         final_docs.append(Document(page_content=content, metadata=metadata))
 
-    # 1. Save JSON for the BM25 Retriever
     OUTPUT_JSON.parent.mkdir(parents=True, exist_ok=True)
     with open(OUTPUT_JSON, "w", encoding="utf-8") as f:
         json.dump(docs_for_json, f, ensure_ascii=False, indent=2)
 
-    print(f"Split into {len(final_docs)} perfectly structured chunks.")
+    print(f"Split into {len(final_docs)} chunks.")
 
-    # 2. Rebuild the Chroma Vector Database
-    if VECTORSTORE_DIR.exists():
-        shutil.rmtree(VECTORSTORE_DIR)
-        
-    print("Embedding chunks using Nomic... (this may take a moment)")
-    embeddings = OllamaEmbeddings(model="nomic-embed-text")
-    Chroma.from_documents(
-        documents=final_docs,
-        embedding=embeddings,
-        persist_directory=str(VECTORSTORE_DIR)
+    print("Initializing HuggingFace Embeddings (Cloud)...")
+    embeddings = HuggingFaceEndpointEmbeddings(
+        model="sentence-transformers/all-mpnet-base-v2",
+        huggingfacehub_api_token=os.environ.get("HF_TOKEN")
     )
     
-    print("Vectorstore rebuilt successfully.")
+    print(f"Uploading to Pinecone index: {PINECONE_INDEX_NAME}...")
+    PineconeVectorStore.from_documents(
+        documents=final_docs,
+        embedding=embeddings,
+        index_name=PINECONE_INDEX_NAME
+    )
+    
+    print("Upload complete! You are now fully migrated to the cloud.")
     print("=" * 60)
 
 if __name__ == "__main__":

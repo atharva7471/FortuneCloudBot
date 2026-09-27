@@ -1,11 +1,9 @@
 import os
 from dotenv import load_dotenv, find_dotenv
-
 from langchain_groq import ChatGroq
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnablePassthrough, RunnableLambda
 from langchain_core.output_parsers import StrOutputParser
-
 from retriever import get_context
 
 # Load environment variables from .env file
@@ -49,7 +47,6 @@ Answer:"""
 
 prompt = ChatPromptTemplate.from_template(PROMPT_TEMPLATE)
 
-
 # ============================================================
 # CHAIN DEFINITION
 # ============================================================
@@ -79,14 +76,8 @@ rag_chain = (
 )
 
 def ask_qwen(question: str, chat_history: str = ""):
-    """
-    Helper function to invoke the chain with history.
-    """
     return rag_chain.invoke({"question": question, "chat_history": chat_history})
 
 def stream_qwen(question: str, chat_history: str = ""):
-    """
-    Helper function to stream the chain output with history.
-    """
     return rag_chain.stream({"question": question, "chat_history": chat_history})
 

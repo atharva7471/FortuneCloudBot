@@ -1,7 +1,11 @@
+import os
 import json
 from pathlib import Path
-from langchain_chroma import Chroma
-from langchain_ollama import OllamaEmbeddings
+from langchain_pinecone import PineconeVectorStore
+from langchain_huggingface import HuggingFaceEndpointEmbeddings
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 # ============================================================
@@ -9,9 +13,8 @@ from langchain_ollama import OllamaEmbeddings
 # ============================================================
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-VECTORSTORE_DIR = BASE_DIR / "data" / "vectorstore"
 
-COLLECTION_NAME = "fortune_cloud"
+PINECONE_INDEX_NAME = "fortune-cloud"
 
 TOP_K_INITIAL = 5
 TOP_K_FINAL = 2
@@ -22,14 +25,14 @@ TOP_K_FINAL = 2
 # ============================================================
 
 def get_vectorstore():
-    embeddings = OllamaEmbeddings(
-        model="nomic-embed-text"
+    embeddings = HuggingFaceEndpointEmbeddings(
+        model="sentence-transformers/all-mpnet-base-v2",
+        huggingfacehub_api_token=os.environ.get("HF_TOKEN")
     )
-
-    vectorstore = Chroma(
-        collection_name=COLLECTION_NAME,
-        persist_directory=str(VECTORSTORE_DIR),
-        embedding_function=embeddings,
+    
+    vectorstore = PineconeVectorStore(
+        index_name=PINECONE_INDEX_NAME,
+        embedding=embeddings
     )
     return vectorstore
 
@@ -170,41 +173,47 @@ def detect_intent(query: str):
 
 def rerank_results(query, results):
     """
-    Re-rank Chroma results using semantic similarity + metadata.
+    Re-rank Pinecone results using semantic similarity + section metadata.
     """
-    intent, boosts = detect_intent(query)
+    intent, _ = detect_intent(query)
     reranked = []
 
     for rank, doc in enumerate(results):
         metadata = doc.metadata or {}
-        page_type = metadata.get("type", "webpage")
+        section = metadata.get("section", "").lower()
 
         # Base semantic score (earlier results receive a small advantage)
         semantic_score = max(0, TOP_K_INITIAL - rank) * 0.1
-        metadata_boost = boosts.get(page_type, 0)
+        metadata_boost = 0.0
         
-        category = str(metadata.get("category", "")).lower()
-        category_boost = 0
+        # Apply boosts based on the intent and the section header hierarchy
+        if intent == "course_catalog" and "course" in section:
+            metadata_boost += 5.0
+        elif intent == "course" and "course" in section:
+            metadata_boost += 3.0
+        elif intent == "batch_schedule" and ("batch" in section or "schedule" in section):
+            metadata_boost += 5.0
+        elif intent == "refund_policy" and ("refund" in section or "policy" in section or "legal" in section):
+            metadata_boost += 5.0
+        elif intent == "recruiters" and ("recruiter" in section or "placement" in section or "hire" in section):
+            metadata_boost += 5.0
+        elif intent == "placement" and ("placement" in section or "success" in section):
+            metadata_boost += 5.0
+        elif intent == "company" and ("overview" in section or "founder" in section or "about" in section):
+            metadata_boost += 5.0
+        elif intent == "careers" and ("career" in section or "work" in section):
+            metadata_boost += 5.0
+        elif intent == "office" and ("contact" in section or "location" in section or "branch" in section):
+            metadata_boost += 5.0
 
-        if intent == "refund_policy" and category == "refund":
-            category_boost = 4.0
-        elif intent == "company" and category in ["company", "about"]:
-            category_boost = 3.0
-        elif intent == "office" and page_type == "office":
-            category_boost = 2.0
-        elif intent == "course_catalog" and page_type == "course_catalog":
-            category_boost = 2.0
-
-        final_score = semantic_score + metadata_boost + category_boost
+        final_score = semantic_score + metadata_boost
 
         reranked.append({
             "doc": doc,
             "rank": rank + 1,
-            "page_type": page_type,
-            "category": category,
+            "section": section,
             "semantic_score": semantic_score,
             "metadata_boost": metadata_boost,
-            "category_boost": category_boost,
             "final_score": final_score,
         })
 
