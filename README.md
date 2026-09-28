@@ -110,7 +110,9 @@ FortuneCloudBot/
 **Atharva Bhosale** 
 
 📍 Pune, Maharashtra  
-📩 Email: **atharva7471@gmail.com**  
-🔗 LinkedIn: **www.linkedin.com/in/atharvabhosale-ai**
+📩 Email: **atharva7471@gmail.com**
+<br />  
+🔗 LinkedIn: www.linkedin.com/in/atharvabhosale-ai
+<br />
 🐙 GitHub: https://github.com/atharva7471  
 🌐 Portfolio: https://athoofolio.vercel.app/ 
