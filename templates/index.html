@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fortune Cloud Technologies | Leading AI-Integrated IT Training</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0ea5e9', // Sky 500
+                        secondary: '#334155', // Slate 700
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Marked.js for markdown parsing in chat -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        /* Custom scrollbar for chat */
+        .chat-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .chat-scroll::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .chat-scroll::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 20px;
+        }
+        /* Markdown styles for chat messages */
+        .markdown-body {
+            font-size: 15px;
+            line-height: 1.6;
+            word-wrap: break-word;
+            overflow-wrap: anywhere;
+            white-space: normal;
+        }
+        .markdown-body p { margin-bottom: 0.5rem; }
+        .markdown-body p:last-child { margin-bottom: 0; }
+        .markdown-body ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 0.5rem; }
+        .markdown-body a { color: #0ea5e9; text-decoration: underline; }
+        .markdown-body strong { font-weight: 600; }
+        
+        /* Thinking animation */
+        .dot-flashing {
+            position: relative;
+            width: 8px;
+            height: 8px;
+            border-radius: 5px;
+            background-color: #94a3b8;
+            color: #94a3b8;
+            animation: dot-flashing 1s infinite linear alternate;
+            animation-delay: 0.5s;
+        }
+        .dot-flashing::before, .dot-flashing::after {
+            content: '';
+            display: inline-block;
+            position: absolute;
+            top: 0;
+        }
+        .dot-flashing::before {
+            left: -12px;
+            width: 8px;
+            height: 8px;
+            border-radius: 5px;
+            background-color: #94a3b8;
+            color: #94a3b8;
+            animation: dot-flashing 1s infinite alternate;
+            animation-delay: 0s;
+        }
+        .dot-flashing::after {
+            left: 12px;
+            width: 8px;
+            height: 8px;
+            border-radius: 5px;
+            background-color: #94a3b8;
+            color: #94a3b8;
+            animation: dot-flashing 1s infinite alternate;
+            animation-delay: 1s;
+        }
+        @keyframes dot-flashing {
+            0% { background-color: #94a3b8; }
+            50%, 100% { background-color: #e2e8f0; }
+        }
+    </style>
+</head>
+<body class="font-sans text-slate-800 bg-slate-50 antialiased min-h-screen flex flex-col relative overflow-x-hidden">
+
+    <!-- Navbar -->
+    <header class="bg-white shadow-sm sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center gap-2">
+                    <span class="text-3xl">☁️</span>
+                    <span class="font-bold text-2xl text-slate-800 tracking-tight">Fortune <span class="text-primary">Cloud</span></span>
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#" class="text-slate-600 hover:text-primary transition-colors font-medium">Home</a>
+                    <a href="#" class="text-slate-600 hover:text-primary transition-colors font-medium">Courses</a>
+                    <a href="#" class="text-slate-600 hover:text-primary transition-colors font-medium">Placements</a>
+                    <a href="#" class="text-slate-600 hover:text-primary transition-colors font-medium">About Us</a>
+                </nav>
+                <div class="hidden md:flex">
+                    <a href="#" class="bg-primary hover:bg-sky-600 text-white px-6 py-2 rounded-full font-medium transition-all shadow-sm shadow-sky-200">Apply Now</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <main class="flex-grow">
+        <div class="bg-white relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-32 relative z-10">
+                <div class="md:w-2/3">
+                    <h1 class="text-5xl md:text-6xl font-extrabold text-slate-900 leading-tight mb-6">
+                        Kickstart your IT career with <span class="text-primary">AI-Integrated</span> Training
+                    </h1>
+                    <p class="text-xl text-slate-600 mb-10 leading-relaxed max-w-2xl">
+                        Join India's leading institute for job-oriented courses. With a 94% placement rate, real-world projects, and expert mentors, your future starts here.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="bg-primary hover:bg-sky-600 text-white px-8 py-3.5 rounded-full font-semibold text-lg transition-all shadow-lg shadow-sky-200/50">Explore Courses</a>
+                        <a href="#" class="bg-white text-slate-700 border border-slate-200 hover:border-slate-300 hover:bg-slate-50 px-8 py-3.5 rounded-full font-semibold text-lg transition-all">Placement Records</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Decorative background elements -->
+            <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-sky-50 blur-3xl opacity-60 z-0"></div>
+            <div class="absolute bottom-0 right-60 w-72 h-72 rounded-full bg-blue-50 blur-3xl opacity-60 z-0"></div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="py-20 bg-slate-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 bg-sky-100 text-primary rounded-xl flex items-center justify-center text-2xl mb-6">💼</div>
+                        <h3 class="text-xl font-bold mb-3 text-slate-800">100% Job Oriented</h3>
+                        <p class="text-slate-600 leading-relaxed">Our curriculum is designed to meet industry standards, ensuring you are job-ready from day one.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 bg-sky-100 text-primary rounded-xl flex items-center justify-center text-2xl mb-6">📈</div>
+                        <h3 class="text-xl font-bold mb-3 text-slate-800">94% Placement Rate</h3>
+                        <p class="text-slate-600 leading-relaxed">We have a proven track record of placing our students in top IT companies across India.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 bg-sky-100 text-primary rounded-xl flex items-center justify-center text-2xl mb-6">🤖</div>
+                        <h3 class="text-xl font-bold mb-3 text-slate-800">AI-Integrated Learning</h3>
+                        <p class="text-slate-600 leading-relaxed">Learn with the latest AI tools and methodologies to stay ahead in the rapidly evolving tech landscape.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-300 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl">☁️</span>
+                    <span class="font-bold text-xl text-white">Fortune Cloud</span>
+                </div>
+                <p class="text-sm">© 2026 Fortune Cloud Technologies. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========================================== -->
+    <!-- AI CHAT WIDGET SYSTEM -->
+    <!-- ========================================== -->
+
+    <!-- Floating Chat Button -->
+    <button id="chat-toggle-btn" class="fixed bottom-6 right-6 w-16 h-16 bg-primary hover:bg-sky-600 text-white rounded-full shadow-lg shadow-sky-500/40 flex items-center justify-center transition-all duration-300 hover:scale-110 z-50 group focus:outline-none focus:ring-4 focus:ring-sky-200">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-8 h-8 group-hover:scale-110 transition-transform">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a5.969 5.969 0 0 1-.474-.065 4.48 4.48 0 0 0 .978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z" />
+        </svg>
+    </button>
+
+    <!-- Chat Widget Container (Hidden by default) -->
+    <div id="chat-widget" class="fixed bottom-28 right-6 w-[460px] h-[700px] max-h-[calc(100vh-140px)] max-w-[calc(100vw-32px)] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden z-50 transition-all duration-300 transform scale-95 opacity-0 pointer-events-none origin-bottom-right border border-slate-100">
+        
+        <!-- Chat Header -->
+        <div class="bg-primary text-white p-4 flex justify-between items-center shadow-md z-10 relative">
+            <div class="flex items-center gap-3">
+                <div class="relative">
+                    <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center text-xl backdrop-blur-sm">🤖</div>
+                    <div class="absolute bottom-0 right-0 w-3 h-3 bg-green-400 border-2 border-primary rounded-full"></div>
+                </div>
+                <div>
+                    <h3 class="font-bold text-lg leading-tight">FortuneCloud Assistant</h3>
+                    <p class="text-xs text-sky-100 opacity-90">Here to answer your questions😁</p>
+                </div>
+            </div>
+            <button id="chat-close-btn" class="text-white/80 hover:text-white hover:bg-white/10 p-2 rounded-full transition-colors focus:outline-none">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Chat Messages Area -->
+        <div id="chat-messages" class="flex-grow p-4 overflow-y-auto chat-scroll bg-slate-50 flex flex-col gap-4">
+            
+            <!-- Welcome Message -->
+            <div class="flex items-start gap-2.5 max-w-[90%]">
+                <div class="w-8 h-8 rounded-full bg-sky-100 flex-shrink-0 flex items-center justify-center text-[15px] shadow-sm border border-sky-200">🤖</div>
+                <div class="flex flex-col gap-1 w-full overflow-hidden">
+                    <span class="text-xs text-slate-500 font-medium ml-1">AI Assistant</span>
+                    <div class="bg-white p-3.5 rounded-2xl rounded-tl-sm shadow-sm border border-slate-100 text-slate-700 text-[15px] leading-relaxed markdown-body w-full break-words whitespace-normal">
+                        <p>Hi there! 👋 I'm the Fortune Cloud AI Assistant.</p>
+                        <p>Ask me anything about our courses, placements, schedules or our offices!</p>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <!-- Chat Input Area -->
+        <div class="p-4 bg-white border-t border-slate-100 z-10">
+            <form id="chat-form" class="relative flex items-center">
+                <input 
+                    type="text" 
+                    id="chat-input" 
+                    class="w-full bg-slate-50 border border-slate-200 text-slate-800 rounded-full pl-5 pr-12 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all text-[15px] placeholder:text-slate-400" 
+                    placeholder="Type your question..." 
+                    autocomplete="off"
+                >
+                <button type="submit" id="chat-send-btn" class="absolute right-2 w-9 h-9 bg-primary text-white rounded-full flex items-center justify-center hover:bg-sky-600 transition-colors focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 translate-x-px -translate-y-px">
+                        <path d="M3.478 2.404a.75.75 0 0 0-.926.941l2.432 7.905H13.5a.75.75 0 0 1 0 1.5H4.984l-2.432 7.905a.75.75 0 0 0 .926.94 60.519 60.519 0 0 0 18.445-8.986.75.75 0 0 0 0-1.218A60.517 60.517 0 0 0 3.478 2.404Z" />
+                    </svg>
+                </button>
+            </form>
+            <div class="text-center mt-2">
+                <span class="text-[10px] text-slate-400 font-medium tracking-wide uppercase">Powered by Athaarvaa!</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Script -->
+    <script src="/static/js/chat.js"></script>
+</body>
+</html>

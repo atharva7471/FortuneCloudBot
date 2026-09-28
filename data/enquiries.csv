@@ -1,0 +1,3 @@
+Timestamp,Form ID,Name,Email,Phone,Course,Message,All Data
+2026-09-28 14:43:12,course_enquiry,Atharva7471,atharva7471@gmail.com,,,,"{""name"": ""Atharva7471"", ""email"": ""atharva7471@gmail.com""}"
+2026-09-28 14:46:31,course_enquiry,Atharva,atharva7471@gmail.com,9689772221,Full Stack Development,Hey this is from my side,"{""name"": ""Atharva"", ""email"": ""atharva7471@gmail.com"", ""phone"": ""9689772221"", ""course"": ""Full Stack Development"", ""message"": ""Hey this is from my side""}"
