@@ -113,7 +113,7 @@ narwhals==2.26.0
 nest-asyncio==1.6.0
 networkx==3.4.2
 nltk==3.10.3
-numpy==2.5.3
+numpy==2.2.6
 oauthlib==3.3.1
 ollama==0.6.2
 onnxruntime==1.30.0
