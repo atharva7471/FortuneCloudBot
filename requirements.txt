@@ -169,7 +169,7 @@ requests-toolbelt==1.0.0
 rich==15.0.0
 rpds-py==0.30.0
 rtree==1.4.1
-scipy==1.18.1
+scipy==1.15.3
 setuptools==84.0.0
 shapely==2.1.2
 shellingham==1.5.4
