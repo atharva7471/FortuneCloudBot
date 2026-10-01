@@ -157,6 +157,120 @@
                 </div>
             </div>
         </div>
+        <!-- About This Demo Section -->
+        <div class="py-24 bg-white border-t border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col lg:flex-row gap-16 items-center">
+                    
+                    <!-- Left Side: Actual Website Preview -->
+                    <div class="w-full lg:w-1/2 relative group">
+                        <!-- Label -->
+                        <div class="absolute -top-4 left-6 bg-primary text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider shadow-md z-20">
+                            Actual Website
+                        </div>
+                        <div class="absolute -top-4 right-6 bg-slate-800 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-md z-20">
+                            Fortune Cloud Technologies
+                        </div>
+                        
+                        <!-- Mockup Container -->
+                        <div class="bg-slate-800 rounded-2xl overflow-hidden shadow-2xl border border-slate-700/50 transform transition-transform duration-700 group-hover:scale-[1.02]">
+                            <!-- Browser Top Bar -->
+                            <div class="bg-slate-900 px-4 py-3 flex items-center gap-4">
+                                <div class="flex gap-2">
+                                    <div class="w-3.5 h-3.5 rounded-full bg-red-500"></div>
+                                    <div class="w-3.5 h-3.5 rounded-full bg-yellow-500"></div>
+                                    <div class="w-3.5 h-3.5 rounded-full bg-green-500"></div>
+                                </div>
+                                <div class="bg-slate-800 flex-grow rounded-lg text-slate-400 text-xs px-3 py-2 font-mono flex items-center justify-center border border-slate-700 relative">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-3.5 h-3.5 absolute left-3 opacity-70"><path fill-rule="evenodd" d="M10 1a4.5 4.5 0 00-4.5 4.5V9H5a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-.5V5.5A4.5 4.5 0 0010 1zm3 8V5.5a3 3 0 10-6 0V9h6z" clip-rule="evenodd" /></svg>
+                                    https://www.fortunecloudindia.com/
+                                </div>
+                            </div>
+                            
+                            <!-- Iframe Preview -->
+                            <div class="w-full h-[450px] bg-slate-100 relative">
+                                <!-- Using iframe to show the actual site -->
+                                <iframe src="https://www.fortunecloudindia.com/" class="w-full h-full border-none" loading="lazy" title="Fortune Cloud Official Website" tabindex="-1"></iframe>
+                                <!-- Overlay to prevent clicking on iframe but allow scrolling if possible, or just block entirely -->
+                                <div class="absolute inset-0 bg-transparent z-10 pointer-events-auto" title="Website Preview"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Glow Effect -->
+                        <div class="absolute inset-0 bg-primary/20 blur-[80px] -z-10 rounded-full transform scale-90 translate-y-10"></div>
+                    </div>
+                    
+                    <!-- Right Side: Project Description -->
+                    <div class="w-full lg:w-1/2">
+                        <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-6">
+                            Built on top of the <span class="text-primary">real website.</span>
+                        </h2>
+                        
+                        <p class="text-slate-600 text-lg mb-10 leading-relaxed">
+                            This AI Virtual Assistant is a separate project built using the content available on the official Fortune Cloud Technologies website. The system crawls and processes the website content, converts it into a searchable knowledge base, and uses RAG to retrieve relevant information when users ask questions.
+                        </p>
+                        
+                        <!-- Visual Flow -->
+                        <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 mb-8 shadow-inner overflow-hidden">
+                            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-5">Architecture Flow</h4>
+                            <div class="flex flex-wrap items-center justify-center gap-y-6 gap-x-2 text-sm font-medium text-slate-700">
+                                
+                                <div class="flex flex-col items-center gap-2">
+                                    <div class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-xl border border-slate-100">🌐</div>
+                                    <span class="text-[11px] text-center w-16 leading-tight">Website</span>
+                                </div>
+                                <div class="text-slate-300">➔</div>
+                                
+                                <div class="flex flex-col items-center gap-2">
+                                    <div class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-xl border border-slate-100">🕷️</div>
+                                    <span class="text-[11px] text-center w-16 leading-tight">Web Crawler</span>
+                                </div>
+                                <div class="text-slate-300">➔</div>
+                                
+                                <div class="flex flex-col items-center gap-2">
+                                    <div class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-xl border border-slate-100">⚙️</div>
+                                    <span class="text-[11px] text-center w-16 leading-tight">Data Processing</span>
+                                </div>
+                                <div class="text-slate-300">➔</div>
+                                
+                                <div class="flex flex-col items-center gap-2">
+                                    <div class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-xl border border-slate-100">🔢</div>
+                                    <span class="text-[11px] text-center w-16 leading-tight">Embeddings</span>
+                                </div>
+                                <div class="text-slate-300 hidden sm:block">➔</div>
+                                
+                                <div class="flex flex-col items-center gap-2">
+                                    <div class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-xl border border-slate-100">🌲</div>
+                                    <span class="text-[11px] text-center w-16 leading-tight">Pinecone</span>
+                                </div>
+                                <div class="text-slate-300">➔</div>
+                                
+                                <div class="flex flex-col items-center gap-2">
+                                    <div class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-xl border border-slate-100">🧠</div>
+                                    <span class="text-[11px] text-center w-16 leading-tight">RAG</span>
+                                </div>
+                                <div class="text-slate-300">➔</div>
+                                
+                                <div class="flex flex-col items-center gap-2">
+                                    <div class="w-12 h-12 bg-primary text-white rounded-xl shadow-md shadow-sky-200 flex items-center justify-center text-xl">🤖</div>
+                                    <span class="text-[11px] text-primary font-bold text-center w-16 leading-tight">AI Assistant</span>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-4 p-5 bg-sky-50 rounded-xl border border-sky-100">
+                            <div class="text-primary text-2xl mt-0.5">💡</div>
+                            <p class="text-slate-700 leading-relaxed text-sm">
+                                <span class="font-bold text-slate-900 block mb-1">How it works</span>
+                                Instead of manually hard-coding answers, the assistant retrieves relevant information from the crawled website content and generates responses using the retrieved context. Responses can also include citations pointing back to the original Fortune Cloud pages.
+                            </p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
     </main>
 
     <!-- Footer -->
