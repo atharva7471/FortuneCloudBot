@@ -20,7 +20,7 @@ templates = Jinja2Templates(directory=str(BASE_DIR / "templates"))
 app.include_router(chat.router, prefix="/api")
 app.include_router(forms.router, prefix="/api/forms")
 
-@app.get("/")
+@app.api_route("/", methods=["GET", "HEAD"])
 async def home(request: Request):
     return templates.TemplateResponse(request=request, name="index.html")
 
