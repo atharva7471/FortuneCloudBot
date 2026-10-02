@@ -36,28 +36,33 @@ async def submit_form(request: FormSubmitRequest):
     from datetime import datetime
     import json
     
-    # Store in the 'data' directory at the root of the project
-    data_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "data")
-    os.makedirs(data_dir, exist_ok=True)
-    
-    csv_file = os.path.join(data_dir, "enquiries.csv")
-    file_exists = os.path.isfile(csv_file)
-    
-    with open(csv_file, mode="a", newline="", encoding="utf-8") as f:
-        writer = csv.writer(f)
-        if not file_exists:
-            writer.writerow(["Timestamp", "Form ID", "Name", "Email", "Phone", "Course", "Message", "All Data"])
-            
-        writer.writerow([
-            datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-            form_id,
-            data.get("name", ""),
-            data.get("email", ""),
-            data.get("phone", ""),
-            data.get("course", ""),
-            data.get("message", ""),
-            json.dumps(data)
-        ])
+    try:
+        # Store in the 'data' directory at the root of the project
+        data_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "data")
+        os.makedirs(data_dir, exist_ok=True)
+        
+        csv_file = os.path.join(data_dir, "enquiries.csv")
+        file_exists = os.path.isfile(csv_file)
+        
+        with open(csv_file, mode="a", newline="", encoding="utf-8") as f:
+            writer = csv.writer(f)
+            if not file_exists:
+                writer.writerow(["Timestamp", "Form ID", "Name", "Email", "Phone", "Course", "Message", "All Data"])
+                
+            writer.writerow([
+                datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                form_id,
+                data.get("name", ""),
+                data.get("email", ""),
+                data.get("phone", ""),
+                data.get("course", ""),
+                data.get("message", ""),
+                json.dumps(data)
+            ])
+    except OSError:
+        # Vercel serverless functions have a read-only filesystem (except /tmp).
+        # We silently ignore the error so the user still gets a success response.
+        pass
             
     # Return processing success
     return {
