@@ -249,10 +249,16 @@ def get_bm25_retriever():
     bm25_retriever.k = TOP_K_INITIAL
     return bm25_retriever
 
-vectorstore = get_vectorstore()
-vector_retriever = vectorstore.as_retriever(search_kwargs={"k": TOP_K_INITIAL})
+try:
+    vectorstore = get_vectorstore()
+    vector_retriever = vectorstore.as_retriever(search_kwargs={"k": TOP_K_INITIAL})
+except Exception as e:
+    vector_retriever = None
 
-bm25_retriever = get_bm25_retriever()
+try:
+    bm25_retriever = get_bm25_retriever()
+except Exception as e:
+    bm25_retriever = None
 
 def reciprocal_rank_fusion(list1, list2, k=60):
     """

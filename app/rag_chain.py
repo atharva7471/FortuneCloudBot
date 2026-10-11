@@ -1,24 +1,17 @@
 import os
 from dotenv import load_dotenv, find_dotenv
-from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnablePassthrough, RunnableLambda
 from langchain_core.output_parsers import StrOutputParser
-from retriever import get_context
+
+# Safe import for retriever
+try:
+    from app.retriever import get_context
+except ImportError:
+    from retriever import get_context
 
 # Load environment variables from .env file
 load_dotenv()
-
-# ============================================================
-# INITIALIZE LLM
-# ============================================================
-
-# Initialize Google Gemini model (Free Tier, 100% cloud-hosted)
-llm = ChatGoogleGenerativeAI(
-    model=os.getenv("GEMINI_MODEL", "gemini-3.8-flash"), 
-    api_key=os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY"),
-    temperature=0.1
-)
 
 # ============================================================
 # PROMPT TEMPLATE
@@ -79,20 +72,48 @@ def format_docs(docs):
     return "\n\n---\n\n".join(formatted)
 
 
-# The RAG chain uses LangChain Expression Language (LCEL)
-rag_chain = (
-    # We expect a dict like {"question": "...", "chat_history": "..."}
-    RunnablePassthrough.assign(
-        context=lambda x: format_docs(get_context(x["question"]))
-    )
-    | prompt
-    | llm
-    | StrOutputParser()
-)
+_rag_chain = None
+
+def get_rag_chain():
+    """
+    Lazily initialize the Gemini LLM and LangChain RAG pipeline.
+    This prevents the app from crashing on startup if API keys are configured via dashboard.
+    """
+    global _rag_chain
+    if _rag_chain is None:
+        from langchain_google_genai import ChatGoogleGenerativeAI
+        
+        api_key = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY")
+        if not api_key:
+            raise ValueError(
+                "GEMINI_API_KEY is not set. Please add GEMINI_API_KEY to your Vercel Project Environment Variables."
+            )
+            
+        llm = ChatGoogleGenerativeAI(
+            model=os.getenv("GEMINI_MODEL", "gemini-3.8-flash"),
+            api_key=api_key,
+            temperature=0.1
+        )
+        
+        _rag_chain = (
+            RunnablePassthrough.assign(
+                context=lambda x: format_docs(get_context(x["question"]))
+            )
+            | prompt
+            | llm
+            | StrOutputParser()
+        )
+    return _rag_chain
+
 
 def ask_qwen(question: str, chat_history: str = ""):
-    return rag_chain.invoke({"question": question, "chat_history": chat_history})
+    chain = get_rag_chain()
+    return chain.invoke({"question": question, "chat_history": chat_history})
 
 def stream_qwen(question: str, chat_history: str = ""):
-    return rag_chain.stream({"question": question, "chat_history": chat_history})
+    try:
+        chain = get_rag_chain()
+        yield from chain.stream({"question": question, "chat_history": chat_history})
+    except Exception as e:
+        yield f"Error: {str(e)}"
 
