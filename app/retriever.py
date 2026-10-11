@@ -277,17 +277,26 @@ def reciprocal_rank_fusion(list1, list2, k=60):
 
 def get_context(query: str):
     """
-    Retrieves via Hybrid Search (BM25 + Chroma), fuses them, and reranks based on intent.
+    Retrieves via Hybrid Search (BM25 + Pinecone), fuses them, and reranks based on intent.
     Returns just the LangChain Document objects.
     """
-    # 1. Fetch from Vector Database
-    results = vector_retriever.invoke(query)
+    results = []
+    # 1. Fetch from Vector Database (if available)
+    try:
+        if vector_retriever:
+            results = vector_retriever.invoke(query)
+    except Exception as e:
+        # Graceful fallback: continue with BM25 if vector embeddings endpoint is unavailable or throttled
+        results = []
     
     # 2. Fetch from BM25 Keyword Search
     if bm25_retriever:
         bm25_results = bm25_retriever.invoke(query)
-        # Fuse the two lists together, prioritizing documents that appear highly in both
-        results = reciprocal_rank_fusion(results, bm25_results)
+        if results:
+            # Fuse the two lists together, prioritizing documents that appear highly in both
+            results = reciprocal_rank_fusion(results, bm25_results)
+        else:
+            results = bm25_results
         
     # 3. Apply Custom Business Logic Reranking
     _, reranked = rerank_results(query, results)

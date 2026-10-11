@@ -1,6 +1,6 @@
 import os
 from dotenv import load_dotenv, find_dotenv
-from langchain_groq import ChatGroq
+from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnablePassthrough, RunnableLambda
 from langchain_core.output_parsers import StrOutputParser
@@ -13,10 +13,10 @@ load_dotenv()
 # INITIALIZE LLM
 # ============================================================
 
-# Initialize the Groq model
-llm = ChatGroq(
-    model="openai/gpt-oss-120b", 
-    api_key=os.getenv("GROQ_API_KEY"),
+# Initialize Google Gemini model (Free Tier, 100% cloud-hosted)
+llm = ChatGoogleGenerativeAI(
+    model=os.getenv("GEMINI_MODEL", "gemini-3.8-flash"), 
+    api_key=os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY"),
     temperature=0.1
 )
 

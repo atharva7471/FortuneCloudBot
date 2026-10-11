@@ -12,9 +12,9 @@ This project uses a blazing fast **100% Serverless Cloud Architecture** combined
 
 - **Backend:** FastAPI (Python)
 - **Frontend:** Vanilla HTML, JavaScript, and Tailwind CSS
-- **LLM Engine:** Groq API (`llama-3.3-70b-versatile`) via `langchain-groq`
+- **LLM Engine:** Google Gemini Flash (`gemini-3.8-flash`) via `langchain-google-genai`
 - **Vector Database:** Pinecone Serverless
-- **Embeddings:** HuggingFace Inference API (`sentence-transformers/all-mpnet-base-v2`)
+- **Embeddings:** HuggingFace Inference API (`sentence-transformers/all-mpnet-base-v2`) / BM25
 - **Data Orchestration:** LangChain (LCEL)
 
 ---
@@ -46,22 +46,22 @@ RAG (Retrieval-Augmented Generation) gives our AI model "open-book" access to yo
 
 ### 3. Generation (`app/rag_chain.py`)
 * The final chunks are injected into a carefully crafted **Prompt Template**.
-* The prompt forces the Groq LLM to act as a sales assistant, generate **Markdown Citations**, and dynamically generate **JSON Form Schemas** when a user wants to submit an enquiry.
+* The prompt forces the Gemini LLM to act as a sales assistant, generate **Markdown Citations**, and dynamically generate **JSON Form Schemas** when a user wants to submit an enquiry.
 
 ---
 
 ## 🚀 Setup & Installation
 
 ### 1. Prerequisites
-You need API keys for the three cloud services powering the bot:
-- **Groq:** Free API key for the LLM.
+You need API keys for the cloud services powering the bot:
+- **Google Gemini:** Free API key from [Google AI Studio](https://aistudio.google.com/) for the LLM.
 - **Pinecone:** Free Serverless index named `fortune-cloud` (Dimensions: 768, Metric: cosine).
 - **Hugging Face:** Free Inference API token for embeddings.
 
 ### 2. Environment Variables
 Create a `.env` file in the root directory:
 ```env
-GROQ_API_KEY=your_groq_key
+GEMINI_API_KEY=your_gemini_key
 PINECONE_API_KEY=your_pinecone_key
 HF_TOKEN=your_huggingface_token
 ```
