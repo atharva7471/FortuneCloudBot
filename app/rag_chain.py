@@ -74,26 +74,98 @@ def format_docs(docs):
 
 _rag_chain = None
 
+def get_llm():
+    """
+    Initializes the LLM with automatic fallback.
+    Supported providers:
+      1. Groq (Recommended, 100% Free, high rate limits): 'qwen/qwen3.8-27b' or 'openai/gpt-oss-120b'
+      2. Gemini (Google AI Studio Free): 'gemini-3.5-flash' or 'gemini-3.5-flash-lite'
+    """
+    groq_api_key = os.getenv("GROQ_API_KEY")
+    gemini_api_key = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY")
+    provider = os.getenv("LLM_PROVIDER", "").lower()
+    
+    # Auto-detect default provider: Groq is preferred due to generous free limits
+    if not provider:
+        if groq_api_key:
+            provider = "groq"
+        elif gemini_api_key:
+            provider = "gemini"
+        else:
+            raise ValueError(
+                "Neither GROQ_API_KEY nor GEMINI_API_KEY is configured in environment variables."
+            )
+
+    groq_llm = None
+    if groq_api_key:
+        try:
+            from langchain_groq import ChatGroq
+            groq_model = os.getenv("GROQ_MODEL", "qwen/qwen3.8-27b")
+            groq_llm = ChatGroq(
+                model=groq_model,
+                api_key=groq_api_key,
+                temperature=0.1,
+                max_retries=1
+            )
+        except Exception:
+            groq_llm = None
+
+    gemini_llm = None
+    if gemini_api_key:
+        try:
+            from langchain_google_genai import ChatGoogleGenerativeAI
+            gemini_model = os.getenv("GEMINI_MODEL", "gemini-3.5-flash")
+            gemini_llm = ChatGoogleGenerativeAI(
+                model=gemini_model,
+                api_key=gemini_api_key,
+                temperature=0.1,
+                max_retries=1
+            )
+        except Exception:
+            gemini_llm = None
+
+    primary_llm = None
+    fallback_llms = []
+
+    if provider == "groq":
+        if not groq_llm:
+            if gemini_llm:
+                primary_llm = gemini_llm
+            else:
+                raise ValueError("GROQ_API_KEY is not set or failed to initialize.")
+        else:
+            primary_llm = groq_llm
+            if gemini_llm:
+                fallback_llms.append(gemini_llm)
+    elif provider == "gemini":
+        if not gemini_llm:
+            if groq_llm:
+                primary_llm = groq_llm
+            else:
+                raise ValueError("GEMINI_API_KEY is not set or failed to initialize.")
+        else:
+            primary_llm = gemini_llm
+            if groq_llm:
+                fallback_llms.append(groq_llm)
+    else:
+        primary_llm = groq_llm or gemini_llm
+
+    if not primary_llm:
+        raise ValueError("Could not initialize any LLM provider.")
+
+    if fallback_llms:
+        return primary_llm.with_fallbacks(fallback_llms)
+    return primary_llm
+
+
 def get_rag_chain():
     """
-    Lazily initialize the Gemini LLM and LangChain RAG pipeline.
+    Lazily initialize the LLM and LangChain RAG pipeline.
     This prevents the app from crashing on startup if API keys are configured via dashboard.
     """
     global _rag_chain
     if _rag_chain is None:
-        from langchain_google_genai import ChatGoogleGenerativeAI
-        
-        api_key = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY")
-        if not api_key:
-            raise ValueError(
-                "GEMINI_API_KEY is not set. Please add GEMINI_API_KEY to your Vercel Project Environment Variables."
-            )
-            
-        llm = ChatGoogleGenerativeAI(
-            model=os.getenv("GEMINI_MODEL", "gemini-3.8-flash"),
-            api_key=api_key,
-            temperature=0.1
-        )
+        llm = get_llm()
         
         _rag_chain = (
             RunnablePassthrough.assign(

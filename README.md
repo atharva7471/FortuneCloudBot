@@ -12,7 +12,7 @@ This project uses a blazing fast **100% Serverless Cloud Architecture** combined
 
 - **Backend:** FastAPI (Python)
 - **Frontend:** Vanilla HTML, JavaScript, and Tailwind CSS
-- **LLM Engine:** Google Gemini Flash (`gemini-3.8-flash`) via `langchain-google-genai`
+- **LLM Engine:** Groq API (`qwen/qwen3.8-27b` / `openai/gpt-oss-120b`) or Google Gemini (`gemini-3.5-flash`) via LangChain with automatic fallback
 - **Vector Database:** Pinecone Serverless
 - **Embeddings:** HuggingFace Inference API (`sentence-transformers/all-mpnet-base-v2`) / BM25
 - **Data Orchestration:** LangChain (LCEL)
@@ -37,7 +37,7 @@ RAG (Retrieval-Augmented Generation) gives our AI model "open-book" access to yo
 ### 1. Data Ingestion (`app/crawler.py` & `app/ingest.py`)
 * **The Crawler** reads `robots.txt` to find `llms-full.txt`—a perfectly structured Markdown representation of the website.
 * **The Ingestor** splits the text intelligently by headers (`#`, `##`, `###`) using `MarkdownHeaderTextSplitter`.
-* It assigns precise **Metadata** to each chunk and converts them into numerical vectors (Embeddings) using HuggingFace, pushing them to **Pinecone**.
+* **Pinecone** index stores the embeddings created via HuggingFace.
 
 ### 2. Intelligent Retrieval (`app/retriever.py`)
 * **Hybrid Search:** Searches Pinecone for "Semantic Meaning" and uses BM25 for "Keyword Matching".
@@ -46,7 +46,8 @@ RAG (Retrieval-Augmented Generation) gives our AI model "open-book" access to yo
 
 ### 3. Generation (`app/rag_chain.py`)
 * The final chunks are injected into a carefully crafted **Prompt Template**.
-* The prompt forces the Gemini LLM to act as a sales assistant, generate **Markdown Citations**, and dynamically generate **JSON Form Schemas** when a user wants to submit an enquiry.
+* The prompt forces the LLM to act as a sales assistant, generate **Markdown Citations**, and dynamically generate **JSON Form Schemas** when a user wants to submit an enquiry.
+* Features automatic fallback between Groq and Gemini.
 
 ---
 
@@ -54,16 +55,23 @@ RAG (Retrieval-Augmented Generation) gives our AI model "open-book" access to yo
 
 ### 1. Prerequisites
 You need API keys for the cloud services powering the bot:
-- **Google Gemini:** Free API key from [Google AI Studio](https://aistudio.google.com/) for the LLM.
+- **Groq (Recommended):** Free API key from [Groq Console](https://console.groq.com/) for blazing fast LLM inference with high free tier quota.
+- **Google Gemini (Optional):** Free API key from [Google AI Studio](https://aistudio.google.com/) (`gemini-3.5-flash`).
 - **Pinecone:** Free Serverless index named `fortune-cloud` (Dimensions: 768, Metric: cosine).
 - **Hugging Face:** Free Inference API token for embeddings.
 
 ### 2. Environment Variables
 Create a `.env` file in the root directory:
 ```env
+GROQ_API_KEY=your_groq_key
 GEMINI_API_KEY=your_gemini_key
 PINECONE_API_KEY=your_pinecone_key
 HF_TOKEN=your_huggingface_token
+
+# Optional LLM overrides
+LLM_PROVIDER=groq
+GROQ_MODEL=qwen/qwen3.8-27b
+GEMINI_MODEL=gemini-3.5-flash
 ```
 
 ### 3. Running the Pipeline
